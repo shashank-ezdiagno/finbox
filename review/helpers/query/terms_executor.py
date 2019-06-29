@@ -15,7 +15,7 @@ class TermsQueryExecutor:
                 for doc in Indexer.get_index(field, val):
                     if doc.doc_id in visited_docs:
                         continue
-                    query_element = IndexQueryElement(doc.doc_id, fields, vals)
+                    query_element = IndexQueryElement(doc.doc_id, fields, vals, doc.score)
                     if hp.size < self.max_count:
                         hp.insert(query_element)
                     else:
