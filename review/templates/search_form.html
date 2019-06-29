@@ -1,0 +1,31 @@
+
+
+<form action="." method="post">
+    {% csrf_token %}
+    <label for="search">Search Text: </label>
+    <input id="search_text" type="text" name="search_text" value="{{ search_text }}">
+    <input type="submit" value="OK">
+</form>
+    <p><strong>Query:</strong>{{query_text}}</p>
+    {% for doc in data %}
+
+    <p><table>
+        <tr>
+            <th>ProductId</th>
+            <th>User</th>
+            <th>Name</th>
+            <th>QueryScore</th>
+            <th>Doc Score</th>
+        <tr>
+        <tr>
+            <td>{{doc.doc.productId}}</td>
+            <td>{{doc.doc.userId}}</td>
+            <td>{{doc.doc.profileName}}</td>
+            <td>{{doc.score}}</td>
+            <td>{{doc.doc.score}}</td>
+        </tr>
+    </table>
+    </p>
+    <div><strong>Summary:</strong><span>{{doc.doc.summary}}</span></div>
+    <div><strong>Text:</strong><span>{{doc.doc.text}}</span></div>
+    {% endfor %}
