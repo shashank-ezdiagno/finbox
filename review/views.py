@@ -10,13 +10,14 @@ from django.views.generic.edit import FormView
 
 class SearchForm(forms.Form):
     search_text = forms.CharField()
+    max_review_count = forms.IntegerField()
 
     def search(self):
         # send email using the self.cleaned_data dictionary
         #print(Indexer._max_len_index)
         query = self.cleaned_data["search_text"].split(',')
         values = {val.strip() for val in query}
-        executor = TermsQueryExecutor(20)
+        executor = TermsQueryExecutor(self.cleaned_data["max_review_count"])
         docs = executor.execute(["summary","text"], values)
         return [doc for doc in docs]
 

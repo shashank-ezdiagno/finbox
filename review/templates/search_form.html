@@ -4,6 +4,8 @@
     {% csrf_token %}
     <label for="search">Search Text: </label>
     <input id="search_text" type="text" name="search_text" value="{{ search_text }}">
+    <label for="search">Max Review Count: </label>
+    <input id="max_review_count" type="number" name="max_review_count" value="{{ max_review_count }}">
     <input type="submit" value="OK">
 </form>
     <p><strong>Query:</strong>{{query_text}}</p>
