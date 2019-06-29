@@ -7,6 +7,7 @@
     <input type="submit" value="OK">
 </form>
     <p><strong>Query:</strong>{{query_text}}</p>
+    <p><strong>Matched Reviews:</strong>{{data_length}}</p>
     {% for doc in data %}
 
     <p><table>
@@ -28,4 +29,5 @@
     </p>
     <div><strong>Summary:</strong><span>{{doc.doc.summary}}</span></div>
     <div><strong>Text:</strong><span>{{doc.doc.text}}</span></div>
+    <hr>
     {% endfor %}

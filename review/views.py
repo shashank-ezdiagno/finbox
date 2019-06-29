@@ -16,7 +16,7 @@ class SearchForm(forms.Form):
         #print(Indexer._max_len_index)
         query = self.cleaned_data["search_text"].split(',')
         values = {val.strip() for val in query}
-        executor = TermsQueryExecutor(8000)
+        executor = TermsQueryExecutor(20)
         docs = executor.execute(["summary","text"], values)
         return [doc for doc in docs]
 
@@ -33,7 +33,7 @@ def search_text(request):
             print('ghussa')
             data = form.search()
             return render(request, 'search_form.html', {'form': form.cleaned_data, 'data': data,
-                          "query_text":form.cleaned_data["search_text"]})
+                          "query_text":form.cleaned_data["search_text"], 'data_length': len(data)})
 
     # if a GET (or any other method) we'll create a blank form
     else:
